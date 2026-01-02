@@ -25,6 +25,76 @@ You are an expert AI assistant specializing in Spec-Driven Development (SDD). Yo
 
 ## Development Guidelines
 
+### Project Setup and Execution
+
+For this Python CLI Todo App project, follow these specific setup and execution instructions:
+
+**Virtual Environment Setup:**
+1. Create virtual environment at project root: `uv venv` (creates `.venv` directory)
+2. Activate virtual environment: `source .venv/bin/activate`
+3. Install project in development mode: `uv pip install -e .`
+
+**Alternative UV Run Command:**
+- Run the application directly without activating venv: `uv run -m src.todo_app.main [command] [args]`
+- Alternative format: `uv run -m src.todo_app [command] [arguments]`
+- Run CLI interface directly: `uv run -m src.todo_app.cli.interface [command] [args]`
+
+**Interactive CLI Mode:**
+- Activate virtual environment: `source .venv/bin/activate`
+- Start interactive CLI: `uv run -m src.todo_app.main`
+- In interactive mode, you can type commands directly at the prompt:
+
+**Basic Commands:**
+  - `add [task description]` - Add a new task
+  - `add [task description] --priority high --tags work,urgent --due-date 2025-01-15` - Add with priority, tags, and due date
+  - `add [task description] --recurrence daily` - Add a recurring task (daily/weekly/monthly)
+  - `add [task description] --due-date 2025-01-15 --recurrence weekly` - Add with due date and recurrence
+  - `view` - View all tasks (shows overdue tasks with [OVERDUE] and upcoming with [DUE SOON])
+  - `complete [task_id]` - Mark a task as complete (recurring tasks create next occurrence)
+  - `incomplete [task_id]` - Mark a task as incomplete
+  - `update [task_id] [new description]` - Update task description
+  - `delete [task_id]` - Delete a task
+
+**Intermediate Commands (Phase II):**
+  - `search [keyword]` - Search tasks by keyword in description
+  - `filter --status complete` - Filter by completion status
+  - `filter --priority high` - Filter by priority level
+  - `filter --due-date 2025-01-15` - Filter by due date
+  - `filter --status incomplete --priority high` - Multiple filter criteria
+  - `sort --by priority` - Sort by priority (high to low)
+  - `sort --by due_date` - Sort by due date (chronological)
+  - `sort --by title` - Sort alphabetically by title
+  - `sort --by priority --reverse` - Sort by priority in reverse order
+
+**Help:**
+  - `help` - Show available commands
+  - `exit` or `quit` - Exit the application
+
+**Running the Application:**
+- After activating venv: `python -m src.todo_app.main [command] [args]`
+- Alternative: `python -m src.todo_app.cli.interface [command] [args]`
+- Example commands:
+  - `uv run -m src.todo_app.main add "Buy groceries"`
+  - `uv run -m src.todo_app.main add "Weekly report" --due-date "2024-12-31" --recurrence weekly`
+  - `uv run -m src.todo_app.main view`
+  - `uv run -m src.todo_app.main complete 1`
+  - `uv run -m src.todo_app.main update 1 "Buy weekly groceries"`
+  - `uv run -m src.todo_app.main delete 1`
+
+**New Intelligent Scheduling Features:**
+- Add tasks with due dates: `uv run -m src.todo_app.main add "Submit report" --due-date "2024-12-31"`
+- Add recurring tasks: `uv run -m src.todo_app.main add "Daily exercise" --recurrence daily`
+- Add tasks with both due date and recurrence: `uv run -m src.todo_app.main add "Weekly meeting" --due-date "2024-12-31" --recurrence weekly`
+- View tasks with overdue/upcoming indicators: `uv run -m src.todo_app.main view` (overdue tasks show [OVERDUE], upcoming tasks show [DUE SOON])
+- Complete recurring tasks: When completing a recurring task, the system automatically creates a new instance for the next occurrence
+
+**Module Structure:**
+- The application uses relative imports within the `todo_app` package
+- Main entry point: `src/todo_app/main.py`
+- Core modules: `src/todo_app/core/` (task models, task manager)
+- CLI modules: `src/todo_app/cli/` (interface, formatting)
+- All imports within the package use relative imports (e.g., `from .core.task_manager import TaskManager`)
+
 ### 1. Authoritative Source Mandate:
 Agents MUST prioritize and use MCP tools and CLI commands for all information gathering and task execution. NEVER assume a solution from internal knowledge; all methods require external verification.
 
