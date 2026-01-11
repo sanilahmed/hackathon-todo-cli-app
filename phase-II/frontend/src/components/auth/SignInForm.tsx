@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { validateEmail } from '@/lib/utils/validation';
+import { validateEmail } from '@/lib/utils/validation'; 
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 import { SignInFormState } from '@/types/auth';
