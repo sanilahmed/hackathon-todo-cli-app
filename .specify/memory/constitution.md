@@ -1,89 +1,101 @@
-<!--
-SYNC IMPACT REPORT
-Version change: 2.0.0 → 3.0.0
-Modified principles: Expanded from Phase I only to include all three phases (Core, Intermediate, Advanced)
-Added sections: Phase II principles, Phase III principles, Comprehensive feature set
-Removed sections: Phase I specific limitations
-Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
-Follow-up TODOs: None
--->
-
-# The Evolution of Todo – Python CLI Application Constitution
+# Todo CLI Application Constitution
 
 ## Core Principles
 
-### I. Spec-Driven Development
-No code may be written without an approved specification. All development must follow a clear specification that outlines requirements, user scenarios, and acceptance criteria before any implementation begins.
+### I. Incremental Development
+- Extend existing code, do not rewrite
+- Build features in structured phases while preserving stability
+- Maintain backward compatibility: existing commands must continue to work
 
-### II. Incremental Development
-Features must be implemented in structured phases: Core (Phase I), Intermediate (Phase II), and Advanced (Phase III). Each phase must be completed and stable before moving to the next, ensuring a solid foundation for subsequent features.
+### II. CLI-First UX
+- Features must be usable via interactive CLI
+- Interactive prompt-based CLI (`todo>`)
+- Commands must be intuitive and discoverable
+- Helpful error messages for invalid input
+- `help` command should list all available actions
 
-### III. CLI-First UX
-All features must be usable via the interactive CLI. The application must maintain a console-based interface that is intuitive, discoverable, and user-friendly. Commands must be intuitive and the `help` command should list all available actions.
+### III. Clear Separation of Concerns
+- Clear separation between CLI parsing and business logic
+- Task model must remain extensible
+- Ensure future features can be added without refactoring core logic
+- Avoid tight coupling between components
 
-### IV. Backward Compatibility
-Existing commands and functionality must continue to work as new features are added. No breaking changes to the CLI interface are allowed without proper deprecation cycles.
+### IV. Code Quality
+- No unnecessary dependencies; Python 3.13+ only
+- Code readability over cleverness
+- Defensive input validation
+- Consistent output formatting
+- Store task metadata (priority, tags, due dates) in structured form
 
-### V. Clear Separation of Concerns
-Maintain clear separation between core business logic and CLI interface. Core logic should be decoupled from presentation to allow for future extensibility while keeping the codebase maintainable.
-
-### VI. Code Clarity and Extensibility
-Python code must be clean, readable, and maintainable. Code should prioritize clarity and extensibility over clever implementations. The task model must remain extensible to support future features like priorities, tags, due dates, and recurring tasks.
-
-### VII. Determinism and Testability
-Application behavior must be predictable and easy to test manually via CLI. The application should have consistent, deterministic behavior that can be easily verified through console interaction.
+### V. Spec-Driven Development
+- No code may be written without an approved specification
+- All features must have their own clear specification before implementation
+- All tasks must be uniquely identifiable via an ID
+- Task state (complete/incomplete) must be explicitly visible in the task list
 
 ## Feature Phases
 
-### Phase I – Core Essentials
+### Phase I – Basic Level (Core Essentials):
 - Add Task: create new todo items
 - Delete Task: remove tasks by ID
 - Update Task: modify task description
 - View Task List: display all tasks clearly
 - Mark as Complete: toggle completion status
 
-### Phase II – Intermediate Level
+### Phase II – Intermediate Level (Organization & Usability):
 - Priorities: support high / medium / low priority levels
 - Tags / Categories: assign labels such as work, personal, home
 - Search: find tasks by keyword
 - Filter: filter tasks by status, priority, or category
 - Sort: order tasks by priority, due date, or alphabetically
 
-### Phase III – Advanced Level
+### Phase III – Advanced Level (Intelligent Features):
 - Recurring Tasks: auto-reschedule repeating tasks (daily / weekly / custom)
 - Due Dates: support deadlines with date & time
 - Time Reminders: notify user via CLI output at runtime (no external services)
 
-## Key Standards
+## Technology Standards
 
-Each feature must have its own clear specification before implementation. All tasks must be uniquely identifiable via an ID. Task state (complete/incomplete) must be explicitly visible in the task list. The application uses in-memory storage for simplicity but must be architected to allow for future persistence. No unnecessary dependencies beyond standard Python 3.13+ should be used unless explicitly specified.
-
-## Technology Constraints
-
+### Python Requirements
 - Python version: 3.13+
 - Environment management: UV only
 - Architecture: Proper `/src` folder with modular Python files
 - Interface: Command-line only (no GUI, no web)
-- Storage: Initially in-memory with extensible architecture for future persistence
 
-## Documentation Rules
+### Data & Architecture Rules
+- Task model must remain extensible
+- Avoid tight coupling between CLI parsing and business logic
+- Store task metadata (priority, tags, due dates) in structured form
+- Ensure future features can be added without refactoring core logic
 
-- README.md must include setup, run instructions, and feature overview.
-- CLAUDE.md must define how Claude Code should implement and evolve features.
-- specs/history must preserve all past specifications without deletion.
-- Update documentation after each phase with new commands, flags, and examples.
+## Quality Standards
+
+### CLI Design Rules
+- Interactive prompt-based CLI (`todo>`)
+- Commands must be intuitive and discoverable
+- Helpful error messages for invalid input
+- `help` command should list all available actions
+
+### Code Quality Requirements
+- Clear command naming and predictable behavior
+- Defensive input validation
+- Consistent output formatting
+- Code readability over cleverness
+
+### Documentation Requirements
+- Update CLAUDE.md after each phase
+- Document new commands, flags, and examples
+- Include upgrade notes for developers
+
+## Non-Goals
+- No GUI or web interface
+- No database or cloud sync
+- No external notification services
 
 ## Success Criteria
-
-- All Phase I features work correctly via console interaction.
-- Phase II features enhance usability without breaking existing functionality.
-- Phase III features provide intelligent capabilities while maintaining simplicity.
-- Code aligns exactly with written specifications.
-- Repository structure matches deliverable requirements.
-- No scope creep in individual tasks, but planned expansion across phases.
+A stable, extensible Todo CLI app that evolves from basic task management into an intelligent, user-friendly command-line productivity tool.
 
 ## Governance
+This constitution governs all development decisions for the Todo CLI Application. It is the highest authority that governs the behavior of all agents, specs, plans, and implementations. All features, commands, and functionality MUST comply strictly with this constitution to pass evaluation.
 
-This constitution governs all development decisions for The Evolution of Todo – Python CLI Application project. All contributors must adhere to these principles. Changes to this constitution require approval from project maintainers and must be documented with appropriate justification.
-
-**Version**: 3.0.0 | **Ratified**: 2025-12-28 | **Last Amended**: 2025-12-31
+**Version**: 3.0.0 | **Ratified**: 2025-12-31 | **Last Amended**: 2025-12-31

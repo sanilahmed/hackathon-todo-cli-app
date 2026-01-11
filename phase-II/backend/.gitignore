@@ -1,0 +1,86 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.example
+
+# Logs
+*.log
+logs/
+log/
+
+# Database
+*.db
+*.db-journal
+task_api.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Local configuration
+config.local
+config.dev
+*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile.local
+.dockerignore
+
+# Alembic
+alembic/versions/*.py
+
+# Process
+*.pid
+*.seed
+*.pkl
+
+# Coverage
+.coverage.*
